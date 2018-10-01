@@ -1,0 +1,16 @@
+{
+    "name": "wilder14/quete_simple_mvc",
+    "description": "quete mvc 2",
+    "authors": [
+        {
+            "name": "Anthony Jonas",
+            "email": "anthony.jonas@outlook.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
+    },
+    "require": {}
+}
