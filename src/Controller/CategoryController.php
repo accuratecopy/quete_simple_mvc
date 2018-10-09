@@ -2,22 +2,33 @@
 
 namespace Controller;
 
+    use Twig_Loader_Filesystem;
+    use Twig_Environment;
     use Model\CategoryManager;
 
     class CategoryController
     {
+
+        private $twig;
+
+        public function __construct()
+        {
+            $loader = new Twig_Loader_Filesystem(__DIR__.'/../View');
+            $this->twig = new Twig_Environment($loader);
+        }
+
         public function index()
         {
             $CategoryManager = new CategoryManager();
             $categories = $CategoryManager->selectAllCategories();
-            require __DIR__ . '/../View/category.php';
+            return $this->twig->render('Category/index.html.twig', ['categories' => $categories]);
         }
 
-        public function show(int $id)
+        public function show($id)
         {
             $CategoryManager = new CategoryManager();
             $category = $CategoryManager->selectOneCategory($id);
-            require __DIR__ . '/../View/showCategory.php';
+            return $this->twig->render('Category/category.html.twig', ['category' => $category]);
         }
     }
-?>
+
